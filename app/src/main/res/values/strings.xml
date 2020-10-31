@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">DeliMap</string>
+    <string name="delivery_cost">%s / %s₽</string>
+</resources>

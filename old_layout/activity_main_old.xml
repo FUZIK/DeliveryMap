@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/call_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:minWidth="0dp"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                app:icon="@drawable/ic_baseline_call_24"
+                app:iconGravity="textEnd"
+                app:iconPadding="0dp"
+                app:iconSize="39dp"
+                app:layout_constraintEnd_toStartOf="@+id/calculate_dilivery"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/calculate_dilivery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:minWidth="0dp"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                app:icon="@drawable/ic_baseline_directions_run_24"
+                app:iconGravity="textEnd"
+                app:iconPadding="0dp"
+                app:iconSize="39dp"
+                app:layout_constraintEnd_toStartOf="@+id/form_button"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/call_button" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/form_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:minWidth="0dp"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                app:icon="@drawable/ic_baseline_post_add_24"
+                app:iconGravity="textEnd"
+                app:iconPadding="0dp"
+                app:iconSize="39dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/calculate_dilivery" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.yandex.mapkit.mapview.MapView
+            android:id="@+id/mapView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+        </com.yandex.mapkit.mapview.MapView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/location_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+            <LinearLayout
+                android:id="@+id/linearLayout3"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:alpha="0.6"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:background="@android:color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleX="1.3"
+                android:scaleY="1.3"
+                android:layout_marginEnd="6dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/location"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/linearLayout3"
+                app:srcCompat="@drawable/ic_baseline_location_on_24" />
+
+            <TextView
+                android:id="@+id/location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="11dp"
+                android:text="%LOCATION%"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/deliver_popup"
+            android:layout_width="199dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:layout_marginStart="18dp"
+            android:visibility="gone"
+            app:cardCornerRadius="11dp"
+            app:layout_constraintStart_toStartOf="@+id/mapView"
+            app:layout_constraintTop_toBottomOf="@+id/location_container">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="11dp"
+                android:layout_marginTop="11dp"
+                android:layout_marginEnd="11dp"
+                android:layout_marginBottom="11dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/form_title"
+                    style="@style/MaterialAlertDialog.MaterialComponents.Title.Text.CenterStacked"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="DISTANCE"
+                    android:textSize="22sp"
+                    android:textAlignment="center" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="28dp"
+                    android:layout_marginTop="9dp"
+                    android:textAlignment="center">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/from_input"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="0dp"
+                        android:editable="false"
+                        android:focusable="false"
+                        android:focusedByDefault="false"
+                        android:padding="0dp"
+                        android:singleLine="true"
+                        android:text="LOCATION FROM" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="28dp"
+                    android:layout_marginTop="8dp"
+                    app:startIconDrawable="@drawable/ic_baseline_send_24"
+                    android:textAlignment="center">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/to_input"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="0dp"
+                        android:editable="false"
+                        android:focusable="false"
+                        android:focusedByDefault="false"
+                        android:padding="0dp"
+                        android:singleLine="true"
+                        android:text="LOCATION TO" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/phone_input_container"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="33dp"
+                    android:layout_marginTop="9dp"
+                    android:textAlignment="center">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/phone_input"
+                        android:inputType="phone"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="0dp"
+                        android:padding="0dp"
+                        android:singleLine="true"
+                        android:text="PHONE" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/send_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Send"
+                    android:layout_marginTop="9dp"
+                    app:icon="@drawable/ic_baseline_send_24"
+                    app:iconGravity="start"
+                    app:iconSize="18dp" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/findLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:minWidth="0dp"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                app:icon="@drawable/ic_baseline_my_location_24"
+                app:iconGravity="textEnd"
+                app:iconPadding="0dp"
+                app:iconSize="39dp"
+                app:layout_constraintEnd_toStartOf="@+id/show_directions"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/show_directions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:minWidth="0dp"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                app:icon="@drawable/ic_baseline_map_24"
+                app:iconGravity="textEnd"
+                app:iconPadding="0dp"
+                app:iconSize="39dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/findLocation" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
